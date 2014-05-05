@@ -1,0 +1,11 @@
+%h1 Listing tasks
+
+%table
+  %tr
+    %th Enviroment
+
+  - @tasks.each do |task|
+    %tr
+      %td= task.enviroment
+
+%br
