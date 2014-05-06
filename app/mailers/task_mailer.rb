@@ -3,8 +3,8 @@ class TaskMailer
     port = Rails::Server.new.options[:Port]
     env = "#{Rails.env} "
     if port
-      env += port
+      env += port.to_s
     end
-    Task.new(:enviroment => port).save!
+    Task.new(:enviroment => env).save!
   end
 end
