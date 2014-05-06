@@ -1,11 +1,14 @@
 %h1 Listing tasks
 
 %table
+  = "Size (#{@tasks.size})"
   %tr
+    %th Index
     %th Enviroment
 
-  - @tasks.each do |task|
+  - @tasks.each_with_index do |task, index|
     %tr
+      %th= index
       %td= task.enviroment
 
 %br
