@@ -5,5 +5,5 @@ class TaskMailer
     t.save!
     Rails.logger.error("Exiting #{t}")
   end
-  # handle_asynchronously :create
+  handle_asynchronously :create
 end

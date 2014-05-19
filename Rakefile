@@ -6,9 +6,9 @@ require File.expand_path('../config/application', __FILE__)
 Rails.application.load_tasks
 
 task :node1 do
-  `bundle exec rails s -p 3001 -P tmp/pids/node1.pid`
+  `RAILS_ENV=node1 rake jobs:work`
 end
 
 task :node2 do
-  `bundle exec rails s -p 3002 -P tmp/pids/node2.pid`
+  `RAILS_ENV=node2 rake jobs:work`
 end
