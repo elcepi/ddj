@@ -1,6 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+script = <<SCRIPT
+    echo "Installing RVM"
+    curl -sSL https://get.rvm.io | bash -s stable
+    PATH="$PATH:$HOME/.rvm/bin"
+    rvm install ruby-2.1.1
+SCRIPT
+
 name = 'ddj'
 ip = '192.168.33.14'
 Vagrant.configure('2') do |vagrant_config|
@@ -22,10 +29,10 @@ Vagrant.configure('2') do |vagrant_config|
     # installs mysql, etc...
     config.vm.provision :shell, :path => 'vagrant.sh'
 
-    config.vm.network(:private_network, ip: ip)
+    # install rvm
+    config.vm.provision :shell, :privileged => false, inline: script
 
-    #                       Host Path,            VM Path
-    config.vm.synced_folder(Dir.pwd, "/#{name}")
+    config.vm.network(:private_network, ip: ip)
 
   end #vagrant_config.vm.define
 

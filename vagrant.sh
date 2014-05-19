@@ -20,11 +20,8 @@ echo "Configuring mysql networking"
 sed -i "s/127.0.0.1/*/" /etc/mysql/my.cnf
 service mysql restart
 
-echo "Installing RVM"
-sudo -u vagrant curl -sSL https://get.rvm.io | bash -s stable
-sudo -u vagrant rvm install ruby-2.1.1
-apt-get install libmysql-ruby libmysqlclient-dev
-cd /vagrant
-sudo -u vagrant bundle
+echo "Installing RVM dependencies"
+apt-get -y install libmysql-ruby libmysqlclient-dev
+
 
 echo "All done!"
