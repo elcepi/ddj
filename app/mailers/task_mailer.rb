@@ -1,9 +1,9 @@
 class TaskMailer
   def create
-    Rails.logger.error("Entering")
+    Delayed::Worker.logger.debug("Entering TaskMailer.create")
     t = Task.new(:enviroment => Rails.env)
     t.save!
-    Rails.logger.error("Exiting #{t}")
+    Delayed::Worker.logger.debug("Exiting TaskMailer.create #{t}")
   end
   handle_asynchronously :create
 end
