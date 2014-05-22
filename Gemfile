@@ -43,3 +43,5 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'delayed_job_active_record'
+gem 'daemons'
+
