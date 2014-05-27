@@ -1,0 +1,29 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          delay_jobs
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: delay_jobs initscript
+# Description:       This file starts delayed_jobs at start up.
+### END INIT INFO
+
+APP_PATH="/vagrant"
+SCRIPTNAME=/etc/init.d/delay_jobs
+
+delayed_job_command() {
+  su - vagrant -c "cd ${APP_PATH} && RAILS_ENV=node1 ./bin/delayed_job ${1}"
+}
+
+COMMAND="$1"
+
+case $COMMAND in
+start|stop|restart|reload|status)
+  delayed_job_command $COMMAND
+  ;;
+*)
+  echo "Usage: $SCRIPTNAME {start|stop|restart|reload|status}" >&2
+  exit 3
+  ;;
+esac
